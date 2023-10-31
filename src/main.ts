@@ -36,6 +36,13 @@ const createWindow = () => {
 
   // 'show-context-menu' チャンネルに受信があればポップアップメニューを表示
   ipcMain.handle("show-context-menu", () => menu.popup());
-
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("dist/index.html");
 };
+
+app.whenReady().then(() => {
+  createWindow();
+  // アプリケーションメニューへ "menu" を適用する
+  // Menu.setApplicationMenu(menu);
+});
+
+app.once("window-all-closed", () => app.quit());
