@@ -1,4 +1,4 @@
-import { Menu, MenuItemConstructorOptions } from "electron";
+import { Menu, MenuItemConstructorOptions, nativeTheme } from "electron";
 
 // メニューのテンプレート配列を作成
 const template: MenuItemConstructorOptions[] = [
@@ -7,6 +7,23 @@ const template: MenuItemConstructorOptions[] = [
   { role: "viewMenu", label: "トイレ" },
   { role: "windowMenu", label: "トイレ" },
   { role: "help", submenu: [{ role: "about" }], label: "トイレ" },
+  {
+    label: "トトトイレ",
+    submenu: [
+      {
+        label: "Toggle Darkmode",
+        accelerator: "Ctrl+Shift+D",
+        type: "checkbox",
+        id: "darkmode",
+        checked: nativeTheme.shouldUseDarkColors,
+        click: () => {
+          nativeTheme.themeSource = nativeTheme.shouldUseDarkColors
+            ? "light"
+            : "dark";
+        },
+      },
+    ],
+  },
 ];
 
 // macOS では "アプリメニュー" が必要

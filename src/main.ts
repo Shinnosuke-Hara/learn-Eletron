@@ -42,7 +42,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow();
   // アプリケーションメニューへ "menu" を適用する
-  // Menu.setApplicationMenu(menu);
+  Menu.setApplicationMenu(menu);
 });
 
 app.once("window-all-closed", () => app.quit());
