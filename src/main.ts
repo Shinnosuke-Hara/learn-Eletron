@@ -8,6 +8,7 @@ const createWindow = () => {
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
     },
   });
 
@@ -43,6 +44,10 @@ app.whenReady().then(() => {
   createWindow();
   // アプリケーションメニューへ "menu" を適用する
   Menu.setApplicationMenu(menu);
+});
+
+ipcMain.on("show-context-menu", (event) => {
+  console.log("show-context-menu");
 });
 
 app.once("window-all-closed", () => app.quit());
