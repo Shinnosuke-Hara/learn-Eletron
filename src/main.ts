@@ -36,7 +36,12 @@ const createWindow = () => {
   ]);
 
   // 'show-context-menu' チャンネルに受信があればポップアップメニューを表示
-  ipcMain.handle("show-context-menu", () => menu.popup());
+  ipcMain.handle("show-context-menu", async (event) => {
+    // ... 任意のメニューアイテムの定義やその他のロジック ...
+    BrowserWindow.fromWebContents(event.sender);
+    menu.popup();
+    return {}; // 空のオブジェクトまたは何らかの適切な応答を返します
+  });
   mainWindow.loadFile("dist/index.html");
 };
 
